@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MWA - JS basics</title>
+    <link type="text/css" href="app.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <script type="module">
+
+
+        const printNameGreeting = () => {
+            document.getElementById('out1').innerText = `Vítej, ${document.getElementById('in1').value}!`
+        }
+
+
+        const addValues = () => {
+            const possibleResult = Number(document.getElementById('in2').value) + Number(document.getElementById('in3').value)
+            if (!isNaN(possibleResult)) {
+                document.getElementById('out2').innerText = `vysledek - ${possibleResult}`
+            } else {
+                document.getElementById('out2').innerText = 'nelze sečíst'
+            }
+        }
+
+        const compareValues = () => {
+            const a = Number(document.getElementById('in4').value)
+            const b = Number(document.getElementById('in5').value)
+            let result = '';
+            if (a > b) {
+                result = 'hodnota A je vetsi nez hodnota B'
+            } else if (a < b) {
+                result = 'hodnota A je mensi nez hodnota B'
+            } else {
+                result = 'hodnoty se rovnaji'
+            }
+
+            document.getElementById('out3').innerText = result
+        }
+
+        const evaluateParity = () => {
+            const remains = Number(document.getElementById('in6').value) % 2;
+
+            document.getElementById('out4').innerText = remains === 0 ? 'Číslo je sudé' : 'Číslo je liché'
+        }
+
+        const checkAge = () => {
+
+            const age = Number(document.getElementById('in7').value)
+            let message = ''
+            if (age < 15) {
+                message = 'Uživatel je mladší 15 let'
+            } else if (age >= 15 && age < 18) {
+                if ((18 - age) === 1) {
+                    message = `Uživatel bude plnoletý za rok`
+                } else {
+                    message = `Uživatel bude plnoletý za ${18 - age} roky`
+                }
+            } else {
+                message = 'Uživatel je plnoletý'
+            }
+
+            document.getElementById('out5').innerText = message
+        }
+
+        const printAllValues = () => {
+            for (let i = 0; i < 100; i++) {
+                document.getElementById('out6').innerText += ` ${i + 1}`
+            }
+        }
+
+        const printNames = () => {
+            const names = ['Tim', 'Maty', 'Alan', 'Honza', 'Adam', 'David', 'Filip', 'Jindra']
+            names.map(item => document.getElementById('out7').innerText += ` ${item}`)
+        }
+
+        const printSortedNames = () => {
+            const names = ['Tim', 'Maty', 'Alan', 'Honza', 'Adam', 'David', 'Filip', 'Jindra']
+            names.sort().map(item => document.getElementById('out8').innerText += ` ${item}`)
+        }
+
+        const generateRandomArray = (length) => {
+            let numArray = []
+            for (let i = 0; i < length; i++) {
+                const rndNum = Math.floor(Math.random() * 10) + 1
+                numArray.push(rndNum)
+            }
+            return numArray
+        }
+
+        const calculateAverageScore = () => {
+
+            const rndLength = Math.floor(Math.random() * 15) + 5
+            let numArray = generateRandomArray(rndLength)
+            let summary = 0;
+            for (let i = 0; i < numArray.length; i++) {
+                summary += numArray[i]
+            }
+            console.log(numArray)
+            document.getElementById('out9').innerText = `vysledek - ${summary / rndLength} (vygenerovane pole hodnot je v consoli v inspectu pro kontrolu)`
+        }
+
+        function greet(name) {
+            document.getElementById('out10').innerText = `Ahoj ${name}`
+        }
+
+        const printSortedNumArray = () => {
+            let generatedArray = generateRandomArray(10)
+            generatedArray.sort((a, b) => a - b)
+            generatedArray.map(value => document.getElementById('out11').innerText += `${value},`)
+        }
+
+        window.printNameGreeting = printNameGreeting
+        window.addValues = addValues
+        window.compareValues = compareValues
+        window.evaluateParity = evaluateParity
+        window.checkAge = checkAge
+        window.printAllValues = printAllValues
+        window.printNames = printNames
+        window.printSortedNames = printSortedNames
+        window.calculateAverageScore = calculateAverageScore
+        window.greet = greet
+        window.printSortedNumArray = printSortedNumArray
+
+    </script>
+</head>
+<body>
+<h1>1. úloha</h1>
+
+
+<h3>a)</h3>
+<input type="text" placeholder="zadejte jméno" id="in1"/>
+<button onclick="printNameGreeting()">vypsat</button>
+<p id="out1"></p>
+
+<h3>b)</h3>
+<input type="text" placeholder="hodnota A" id="in2"/>
+<input type="text" placeholder="hodnota B" id="in3"/>
+<button onclick="addValues()">sečíst</button>
+<p id="out2"></p>
+
+<h3>c)</h3>
+<input type="text" placeholder="hodnota A" id="in4"/>
+<input type="text" placeholder="hodnota B" id="in5"/>
+<button onclick="compareValues()">porovnat</button>
+<p id="out3"></p>
+
+<h1>2. úloha</h1>
+
+<h3>a)</h3>
+<input type="text" placeholder="hodnota" id="in6"/>
+<button onclick="evaluateParity()">vyhodnotit</button>
+<p id="out4"></p>
+
+<h3>b)</h3>
+<input type="text" placeholder="věk" id="in7"/>
+<button onclick="checkAge()">vyhodnotit věk</button>
+<p id="out5"></p>
+
+
+<h1>3. úloha</h1>
+<button onclick="printAllValues()">generovat</button>
+<p id="out6"></p>
+
+<h1>4. úloha</h1>
+<h3>a)</h3>
+<button onclick="printNames()">generovat</button>
+<p id="out7"></p>
+<h3>b)</h3>
+<button onclick="printSortedNames()">generovat</button>
+<p id="out8"></p>
+<h3>c)</h3>
+<button onclick="calculateAverageScore()">generovat</button>
+<p id="out9"></p>
+
+
+<h1>5. úloha</h1>
+<h3>a)</h3>
+<input type="text" placeholder="zadejte jméno" id="in8"/>
+<button onclick="greet(document.getElementById('in8').value)">spustit funkci</button>
+<p id="out10"></p>
+<h3>b)</h3>
+<button onclick="printSortedNumArray()">generovat a vypsat</button>
+<p id="out11"></p>
+</body>
+</html>
