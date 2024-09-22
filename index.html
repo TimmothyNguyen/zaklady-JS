@@ -113,6 +113,51 @@
             generatedArray.map(value => document.getElementById('out11').innerText += `${value},`)
         }
 
+        const human = {
+            name: 'Tim',
+            age: 17,
+        }
+
+        const car = {
+            brand: 'Audi',
+            model: 'R8',
+            year: '2024',
+            describeCar: (outputElementId) => {
+                document.getElementById(`${outputElementId}`).innerText = `Toto sportovní auto od německé značky ${car.brand} vyrobené v roce ${car.year} se může pyšnit desetiválcovým motorem v GT provedení. Model ${car.model} byl několik let zdokonalován. Jedinou nevýhodou tohoto auta je vysoká spotřeba paliva`
+            }
+        }
+
+        const getHumanProps = (human) => {
+            return `Tento chlapec se jmenuje ${human.name} a je mu ${human.age} let`
+        }
+
+        const printHumanProps = () => {
+            document.getElementById('out12').innerText = getHumanProps(human)
+        }
+
+        const printAllBookNames = () => {
+            const bookList = [
+                {
+                    author: 'William Shakespeare',
+                    name: 'Hamlet',
+                    publishYear: '1623'
+                },
+                {
+                    author: 'Robert Kiyosaki',
+                    name: 'Rich dad poor dad',
+                    publishYear: '1997'
+                },
+                {
+                    author: 'Andrzej Sapkowski',
+                    name: 'The Witcher',
+                    publishYear: '1986'
+                }
+            ]
+
+            bookList.map(book => document.getElementById('out14').innerText += book.name + '|')
+        }
+
+
         window.printNameGreeting = printNameGreeting
         window.addValues = addValues
         window.compareValues = compareValues
@@ -124,7 +169,9 @@
         window.calculateAverageScore = calculateAverageScore
         window.greet = greet
         window.printSortedNumArray = printSortedNumArray
-
+        window.printHumanProps = printHumanProps
+        window.car = car;
+        window.printAllBookNames = printAllBookNames
     </script>
 </head>
 <body>
@@ -185,5 +232,16 @@
 <h3>b)</h3>
 <button onclick="printSortedNumArray()">generovat a vypsat</button>
 <p id="out11"></p>
+
+<h1>6. úloha</h1>
+<h3>a)</h3>
+<button onclick="printHumanProps()">vypsat</button>
+<p id="out12"></p>
+<h3>b)</h3>
+<button onclick="car.describeCar('out13')">vypsat</button>
+<p id="out13"></p>
+<h3>c)</h3>
+<button onclick="printAllBookNames()">vypsat</button>
+<p id="out14"></p>
 </body>
 </html>
